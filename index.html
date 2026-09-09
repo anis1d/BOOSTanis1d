@@ -6,6 +6,25 @@
     <title>BOOSTanis1d · Arena Breakout</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --neon-teal: #2affc0;
+            --neon-teal-dim: rgba(42, 255, 192, 0.2);
+            --neon-pink: #ff4d9e;
+            --neon-blue: #00b4ff;
+            --amber: #ffb347;
+            --red: #ed2d2d;
+            --bg: #0b0d15;
+            --panel: #10131f;
+            --panel-2: #141b29;
+            --panel-3: #0f1420;
+            --border-dim: #2a3a4a;
+            --text-dim: #8ba8a3;
+            --text-soft: #b0d4d0;
+
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Noto Sans JP', sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,24 +32,30 @@
         }
 
         body {
-            background: #0b0d15;
+            background: var(--bg);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Orbitron', 'Noto Sans JP', sans-serif;
+            font-family: var(--font-display), var(--font-body);
             padding: 16px;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 20% 30%, rgba(0, 255, 200, 0.03) 0%, transparent 30%),
                 radial-gradient(circle at 80% 70%, rgba(255, 0, 150, 0.04) 0%, transparent 40%);
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--neon-teal);
+            outline-offset: 3px;
         }
 
         .terminal-card {
             max-width: 480px;
             width: 100%;
-            background: #10131f;
-            border: 2px solid #2affc0;
-            box-shadow: 0 0 40px rgba(42, 255, 192, 0.2), inset 0 0 30px rgba(42, 255, 192, 0.05);
+            background: var(--panel);
+            border: 2px solid var(--neon-teal);
+            box-shadow: 0 0 40px var(--neon-teal-dim), inset 0 0 30px rgba(42, 255, 192, 0.05);
             border-radius: 28px;
             padding: 28px 20px;
             position: relative;
@@ -43,12 +68,18 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(45deg, #ff00a2, transparent, #00ffc8, transparent);
+            background: linear-gradient(45deg, var(--neon-pink), transparent, var(--neon-teal), transparent);
             background-size: 300% 300%;
             border-radius: 30px;
             z-index: -1;
             opacity: 0.3;
             animation: glitchBorder 6s infinite alternate;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .terminal-card::before {
+                animation: none;
+            }
         }
 
         @keyframes glitchBorder {
@@ -61,7 +92,7 @@
         .header {
             text-align: center;
             padding-bottom: 18px;
-            border-bottom: 1px solid #2affc0;
+            border-bottom: 1px solid var(--neon-teal);
             margin-bottom: 20px;
         }
 
@@ -69,27 +100,27 @@
             font-size: 32px;
             font-weight: 900;
             color: #e0fff5;
-            text-shadow: 0 0 20px #2affc0, 0 0 40px #00b894;
+            text-shadow: 0 0 20px var(--neon-teal), 0 0 40px #00b894;
             letter-spacing: 3px;
         }
 
-        .header h1 span {
-            color: #ff4d9e;
-            text-shadow: 0 0 20px #ff4d9e;
+        .header h1 .accent {
+            color: var(--neon-pink);
+            text-shadow: 0 0 20px var(--neon-pink);
         }
 
         .header .subtitle {
             font-size: 14px;
-            color: #6f8b87;
+            color: var(--text-dim);
             letter-spacing: 6px;
             margin-top: 4px;
             font-weight: 300;
         }
 
-        /* ===== КУРС БУСТА (СВЕРХУ) ===== */
+        /* ===== КУРС БУСТА ===== */
         .rate-top {
-            background: #0f1420;
-            border: 1px solid #2a3a4a;
+            background: var(--panel-3);
+            border: 1px solid var(--border-dim);
             border-radius: 16px;
             padding: 14px 16px;
             margin-bottom: 18px;
@@ -97,32 +128,32 @@
         }
 
         .rate-top .label {
-            color: #8ba8a3;
+            color: var(--text-dim);
             font-size: 13px;
             font-weight: 300;
             letter-spacing: 2px;
-            font-family: 'Noto Sans JP', sans-serif;
+            font-family: var(--font-body);
         }
 
         .rate-top .value {
-            color: #2affc0;
+            color: var(--neon-teal);
             font-size: 28px;
             font-weight: 900;
-            font-family: 'Orbitron', sans-serif;
+            font-family: var(--font-display);
             text-shadow: 0 0 30px rgba(42, 255, 192, 0.3);
             margin-top: 4px;
         }
 
-        .rate-top .value span {
+        .rate-top .value .unit {
             color: #fff;
             font-weight: 300;
             font-size: 18px;
         }
 
-        /* ===== ОФЕР (ТВИНК) ===== */
+        /* ===== ОФЕР ===== */
         .offer-block {
-            background: #141b29;
-            border: 1px solid #2affc0;
+            background: var(--panel-2);
+            border: 1px solid var(--neon-teal);
             border-radius: 20px;
             padding: 20px 18px;
             margin-bottom: 18px;
@@ -132,8 +163,9 @@
         .offer-title {
             font-size: 28px;
             font-weight: 900;
-            background: linear-gradient(135deg, #2affc0, #00b4ff);
+            background: linear-gradient(135deg, var(--neon-teal), var(--neon-blue));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             text-align: center;
             letter-spacing: 2px;
@@ -152,8 +184,8 @@
             flex-direction: column;
             align-items: flex-start;
             gap: 2px;
-            color: #b0d4d0;
-            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text-soft);
+            font-family: var(--font-body);
             padding: 4px 0;
             width: 100%;
         }
@@ -178,22 +210,25 @@
         }
 
         .detail-item .eng {
-            color: #8ba8a3;
+            color: var(--text-dim);
             font-size: 14px;
             font-weight: 400;
             opacity: 0.7;
-            font-family: 'Orbitron', sans-serif;
+            font-family: var(--font-display);
             letter-spacing: 0.5px;
             padding-left: 34px;
         }
 
+        .detail-item .text-red { color: var(--red); }
+        .detail-item .text-white { color: #fff; }
+
         .detail-item.highlight {
-            color: #ffb347;
+            color: var(--amber);
             font-weight: 700;
         }
 
         .detail-item.highlight .eng {
-            color: #ffb347;
+            color: var(--amber);
             opacity: 0.8;
         }
 
@@ -213,7 +248,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px dashed #2affc0;
+            border-top: 1px dashed var(--neon-teal);
             padding-top: 14px;
             flex-wrap: wrap;
             gap: 12px;
@@ -223,7 +258,7 @@
             font-size: 30px;
             font-weight: 900;
             color: #fff;
-            text-shadow: 0 0 30px #2affc0;
+            text-shadow: 0 0 30px var(--neon-teal);
             display: flex;
             align-items: center;
             gap: 20px;
@@ -236,42 +271,44 @@
             gap: 3px;
         }
 
-        .price .p-block span {
-            color: #2affc0;
+        .price .p-block .unit {
+            color: var(--neon-teal);
             font-size: 24px;
         }
 
         .btn-order {
-            background: #ff4d9e;
-            border: none;
+            background: var(--neon-pink);
+            border: 1px solid var(--neon-pink);
             padding: 12px 32px;
             border-radius: 60px;
-            font-family: 'Orbitron', sans-serif;
+            font-family: var(--font-display);
             font-weight: 700;
             font-size: 16px;
-            color: #0b0d15;
+            color: var(--bg);
             letter-spacing: 2px;
             cursor: pointer;
-            transition: 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
             box-shadow: 0 0 30px rgba(255, 77, 158, 0.3);
-            border: 1px solid #ff4d9e;
             text-transform: uppercase;
             width: 100%;
+            text-align: center;
+            text-decoration: none;
+            display: block;
         }
 
         .btn-order:hover {
             transform: scale(1.02);
             background: #ff2b8a;
-            box-shadow: 0 0 60px #ff4d9e;
+            box-shadow: 0 0 60px var(--neon-pink);
         }
 
-        /* ===== MIDASBUY ===== */
-        .midas-section {
-            background: #0f1420;
+        /* ===== СТРОКИ-ССЫЛКИ (Midasbuy / TikTok) ===== */
+        .link-row {
+            background: var(--panel-3);
             border-radius: 16px;
             padding: 14px 18px;
             margin-bottom: 12px;
-            border: 1px solid #2a3a4a;
+            border: 1px solid var(--border-dim);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -279,82 +316,50 @@
             gap: 10px;
         }
 
-        .midas-section .label {
-            color: #8ba8a3;
+        .link-row:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .link-row .label {
+            color: var(--text-dim);
             font-size: 13px;
             font-weight: 300;
         }
 
-        .midas-section a {
-            color: #2affc0;
+        .link-row .ext-link {
+            color: var(--neon-teal);
             font-weight: 700;
             text-decoration: none;
             font-size: 14px;
-            border-bottom: 2px dotted #2affc0;
-            padding-bottom: 2px;
             word-break: break-all;
         }
 
-        .midas-section a:hover {
+        .link-row .ext-link:hover {
             color: #fff;
-            border-bottom: 2px solid #ff4d9e;
         }
 
-        .badge-hk {
-            background: #1f2a3a;
-            padding: 4px 14px;
-            border-radius: 60px;
-            color: #ffb347;
-            font-size: 12px;
-            border: 1px solid #ffb347;
-        }
-
-        /* ===== TIKTOK ===== */
-        .tiktok-section {
-            background: #0f1420;
-            border-radius: 16px;
-            padding: 14px 18px;
-            margin-bottom: 0;
-            border: 1px solid #2a3a4a;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .tiktok-section .label {
-            color: #8ba8a3;
-            font-size: 13px;
-            font-weight: 300;
-        }
-
-        .tiktok-section .tiktok-btn {
-            background: #000000;
+        .link-row .tiktok-btn {
+            background: #000;
             border: 1px solid #ff2a55;
             padding: 8px 20px;
             border-radius: 60px;
-            font-family: 'Orbitron', sans-serif;
+            font-family: var(--font-display);
             font-weight: 700;
             font-size: 14px;
-            color: #ffffff;
+            color: #fff;
             text-decoration: none;
-            transition: 0.3s;
+            transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
             display: inline-flex;
             align-items: center;
             gap: 8px;
             box-shadow: 0 0 25px rgba(255, 42, 85, 0.15);
         }
 
-        .tiktok-section .tiktok-btn:hover {
+        .link-row .tiktok-btn:hover {
             background: #ff2a55;
-            color: #000000;
+            color: #000;
             box-shadow: 0 0 40px rgba(255, 42, 85, 0.3);
             transform: scale(1.02);
-        }
-
-        .tiktok-section .tiktok-btn .icon {
-            font-size: 18px;
         }
 
         /* ===== ПОДВАЛ ===== */
@@ -368,11 +373,6 @@
             letter-spacing: 2px;
         }
 
-        .footer span {
-            color: #ff4d9e;
-            opacity: 0.5;
-        }
-
         /* ===== АДАПТИВ ===== */
         @media (max-width: 480px) {
             .terminal-card { padding: 18px 14px; }
@@ -382,101 +382,104 @@
             .btn-order { font-size: 14px; padding: 12px 20px; }
             .detail-item .eng { font-size: 12px; padding-left: 34px; }
             .rate-top .value { font-size: 22px; }
-            .midas-section, .tiktok-section { flex-direction: column; align-items: stretch; text-align: center; }
-            .tiktok-section .tiktok-btn { justify-content: center; }
+            .link-row { flex-direction: column; align-items: stretch; text-align: center; }
+            .link-row .tiktok-btn { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-<div class="terminal-card">
+<main class="terminal-card">
 
-    <!-- ===== ШАПКА ===== -->
-    <div class="header">
-        <h1>BOOST<span>anis1d</span></h1>
-        <div class="subtitle">✦ ARENA BREAKOUT ✦</div>
-    </div>
+    <header class="header">
+        <h1>BOOST<span class="accent">anis1d</span></h1>
+        <p class="subtitle">✦ ARENA BREAKOUT ✦</p>
+    </header>
 
-    <!-- ===== КУРС БУСТА (СВЕРХУ) ===== -->
-    <div class="rate-top">
+    <section class="rate-top" aria-label="Курс буста">
         <div class="label">✦ КУРС БУСТА ✦</div>
-        <div class="value">1 КК = 150 <span>₴</span></div>
-    </div>
+        <div class="value">1 КК = 150 <span class="unit">₴</span></div>
+    </section>
 
-    <!-- ===== ТВИНК ===== -->
-    <div class="offer-block">
-        <div class="offer-title">✦ ТВИНК ✦</div>
+    <section class="offer-block" aria-labelledby="offer-title">
+        <h2 class="offer-title" id="offer-title">✦ ТВИНК ✦</h2>
 
-        <div class="offer-details">
+        <ul class="offer-details" style="list-style:none;">
 
-            <div class="detail-item">
+            <li class="detail-item">
                 <div class="row">
-                    <span class="icon">⬢</span>
+                    <span class="icon" aria-hidden="true">⬢</span>
                     <span class="label">30 уровень + 15 КК коенов</span>
                 </div>
                 <span class="eng">Level 30 + 15M Coins</span>
-            </div>
+            </li>
 
-            <div class="detail-item">
+            <li class="detail-item">
                 <div class="row">
-                    <span class="icon">⬢</span>
+                    <span class="icon" aria-hidden="true">⬢</span>
                     <span class="label">2 карточки для смены ника</span>
                 </div>
                 <span class="eng">2 Nickname Change Cards</span>
-            </div>
+            </li>
 
-            <div class="detail-item">
+            <li class="detail-item">
                 <div class="row">
-                    <span class="icon">⬢</span>
-                    <span class="label">7 <span style="color:#ED2D2D">красных</span> наборов Т5</span>
+                    <span class="icon" aria-hidden="true">⬢</span>
+                    <span class="label">7 <span class="text-red">красных</span> наборов Т5</span>
                 </div>
-                <span class="eng">7 <span style="color:#ED2D2D">Red</span> T5 Sets</span>
-            </div>
+                <span class="eng">7 <span class="text-red">Red</span> T5 Sets</span>
+            </li>
 
-            <div class="detail-item center">
+            <li class="detail-item center">
                 <div class="row" style="justify-content:center;">
-                    <span>🔒 привязка: Level Pass + Google</span>
+                    <span aria-hidden="true">🔒</span>
+                    <span>привязка: Level Pass + Google</span>
                 </div>
                 <span class="eng">Linked: Level Pass + Google</span>
-            </div>
+            </li>
 
-            <div class="detail-item highlight">
+            <li class="detail-item highlight">
                 <div class="row">
-                    <span class="icon">⚡</span>
-                    <span class="label">+3 лям <span style="color:#FFFFFF">бесплатно</span> к твинку</span>
+                    <span class="icon" aria-hidden="true">⚡</span>
+                    <span class="label">+3 лям <span class="text-white">бесплатно</span> к твинку</span>
                 </div>
                 <span class="eng">+ 3M Free Bonus</span>
-            </div>
+            </li>
 
-        </div>
+        </ul>
 
         <div class="price-tag">
             <div class="price">
-                <span class="p-block">1500 <span>₴</span></span>
-                <span class="p-block">34 <span>$</span></span>
+                <span class="p-block">1500 <span class="unit">₴</span></span>
+                <span class="p-block">34 <span class="unit">$</span></span>
             </div>
-            <button class="btn-order" onclick="window.open('https://t.me/GCCSUSHI', '_blank')">
-               ⚡ ЗАКАЗАТЬ
-            </button>
         </div>
+
+        <p style="margin-top:14px;">
+            <a class="btn-order" href="https://t.me/GCCSUSHI" target="_blank" rel="noopener noreferrer">
+                ⚡ ЗАКАЗАТЬ
+            </a>
+        </p>
+    </section>
+
+    <div class="link-row">
+        <span class="label">🛒 ДОНАТ</span>
+        <a class="ext-link" href="https://www.midasbuy.com/anis1d/hk/shop/uamo#/pages/shop/items" target="_blank" rel="noopener noreferrer">MIDASBUY</a>
+        <span class="label">🛒 ДОНАТ</span>
     </div>
 
-    <!-- ===== MIDASBUY ===== -->
-    <div class="midas-section">
-        <span class="label">🛒 ДОНАТ</span>
-        <a href="https://www.midasbuy.com/anis1d/hk/shop/uamo#/pages/shop/items" target="_blank">MIDASBUY</a>
-        <span class="label">🛒 ДОНАТ</span>
-    </div>
-
-    <!-- ===== TIKTOK ===== -->
-    <div class="tiktok-section">
+    <div class="link-row">
         <span class="label">TIK TOK</span>
-        <a href="https://www.tiktok.com/@anis1d?_r=1&_t=ZS-99aaOuvkkPl" target="_blank" class="tiktok-btn">
-    @anis1d
+        <a class="tiktok-btn" href="https://www.tiktok.com/@anis1d?_r=1&_t=ZS-99aaOuvkkPl" target="_blank" rel="noopener noreferrer">
+            @anis1d
         </a>
     </div>
 
-</div>
+    <footer class="footer">
+        <span aria-hidden="true">✦</span> BOOSTanis1d <span aria-hidden="true">✦</span>
+    </footer>
+
+</main>
 
 </body>
 </html>
