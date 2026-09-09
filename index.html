@@ -86,7 +86,7 @@
             font-weight: 300;
         }
 
-        /* ===== КУРС КК (НОВЫЙ БЛОК СВЕРХУ) ===== */
+        /* ===== КУРС БУСТА (СВЕРХУ) ===== */
         .rate-top {
             background: #0f1420;
             border: 1px solid #2a3a4a;
@@ -226,7 +226,7 @@
             text-shadow: 0 0 30px #2affc0;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
@@ -239,11 +239,6 @@
         .price .p-block span {
             color: #2affc0;
             font-size: 24px;
-        }
-
-        .price .sep {
-            color: #2a3a4a;
-            font-size: 20px;
         }
 
         .btn-order {
@@ -275,7 +270,7 @@
             background: #0f1420;
             border-radius: 16px;
             padding: 14px 18px;
-            margin-bottom: 0;
+            margin-bottom: 12px;
             border: 1px solid #2a3a4a;
             display: flex;
             align-items: center;
@@ -314,6 +309,54 @@
             border: 1px solid #ffb347;
         }
 
+        /* ===== TIKTOK ===== */
+        .tiktok-section {
+            background: #0f1420;
+            border-radius: 16px;
+            padding: 14px 18px;
+            margin-bottom: 0;
+            border: 1px solid #2a3a4a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tiktok-section .label {
+            color: #8ba8a3;
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+        .tiktok-section .tiktok-btn {
+            background: #000000;
+            border: 1px solid #ff2a55;
+            padding: 8px 20px;
+            border-radius: 60px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 25px rgba(255, 42, 85, 0.15);
+        }
+
+        .tiktok-section .tiktok-btn:hover {
+            background: #ff2a55;
+            color: #000000;
+            box-shadow: 0 0 40px rgba(255, 42, 85, 0.3);
+            transform: scale(1.02);
+        }
+
+        .tiktok-section .tiktok-btn .icon {
+            font-size: 18px;
+        }
+
         /* ===== ПОДВАЛ ===== */
         .footer {
             text-align: center;
@@ -335,10 +378,12 @@
             .terminal-card { padding: 18px 14px; }
             .header h1 { font-size: 26px; }
             .offer-title { font-size: 24px; }
-            .price { font-size: 24px; justify-content: center; }
+            .price { font-size: 22px; justify-content: center; gap: 10px; }
             .btn-order { font-size: 14px; padding: 12px 20px; }
             .detail-item .eng { font-size: 12px; padding-left: 34px; }
             .rate-top .value { font-size: 22px; }
+            .midas-section, .tiktok-section { flex-direction: column; align-items: stretch; text-align: center; }
+            .tiktok-section .tiktok-btn { justify-content: center; }
         }
     </style>
 </head>
@@ -420,8 +465,17 @@
     <div class="midas-section">
         <span class="label">🛒 ДОНАТ</span>
         <a href="https://www.midasbuy.com/anis1d/hk/shop/uamo#/pages/shop/items" target="_blank">MIDASBUY</a>
-       <span class="label">🛒 ДОНАТ</span>
+        <span class="badge-hk">🇭🇰 HK</span>
     </div>
+
+    <!-- ===== TIKTOK ===== -->
+    <div class="tiktok-section">
+        <span class="label">TIK TOK</span>
+        <a href="https://www.tiktok.com/@anis1d?_r=1&_t=ZS-99aaOuvkkPl" target="_blank" class="tiktok-btn">
+    @anis1d
+        </a>
+    </div>
+
 </div>
 
 </body>
